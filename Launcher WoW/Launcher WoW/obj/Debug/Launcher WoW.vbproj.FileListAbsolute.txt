@@ -1,1 +1,10 @@
 D:\Projets\Public\Launcher WoW\Launcher WoW\bin\Debug\Launcher WoW.exe.config
+D:\Projets\Public\Launcher WoW\Launcher WoW\bin\Debug\Launcher WoW.exe
+D:\Projets\Public\Launcher WoW\Launcher WoW\bin\Debug\Launcher WoW.pdb
+D:\Projets\Public\Launcher WoW\Launcher WoW\bin\Debug\Launcher WoW.xml
+D:\Projets\Public\Launcher WoW\Launcher WoW\obj\Debug\Launcher_WoW.Main.resources
+D:\Projets\Public\Launcher WoW\Launcher WoW\obj\Debug\Launcher_WoW.Resources.resources
+D:\Projets\Public\Launcher WoW\Launcher WoW\obj\Debug\Launcher WoW.vbproj.GenerateResource.Cache
+D:\Projets\Public\Launcher WoW\Launcher WoW\obj\Debug\Launcher WoW.exe
+D:\Projets\Public\Launcher WoW\Launcher WoW\obj\Debug\Launcher WoW.xml
+D:\Projets\Public\Launcher WoW\Launcher WoW\obj\Debug\Launcher WoW.pdb
