@@ -1,4 +1,4 @@
-VisualBasic.NET
+VisualBasic.NET (Suivez moi sur Twitter (@Sl4yZ) pour l'avancée !)
 ===============
 
 Les sources de mes logiciels | The sources of my freewares
