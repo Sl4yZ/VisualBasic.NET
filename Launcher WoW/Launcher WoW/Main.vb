@@ -85,4 +85,8 @@ Public Class Main
     Private Sub btnSite_Click(sender As Object, e As EventArgs) Handles btnSite.Click
         Process.Start("HTTP://URL DE VOTRE SITE/")
     End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        createAccount.Show()
+    End Sub
 End Class

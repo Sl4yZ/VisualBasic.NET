@@ -8,3 +8,5 @@ D:\Projets\Public\Launcher WoW\Launcher WoW\obj\Debug\Launcher WoW.vbproj.Genera
 D:\Projets\Public\Launcher WoW\Launcher WoW\obj\Debug\Launcher WoW.exe
 D:\Projets\Public\Launcher WoW\Launcher WoW\obj\Debug\Launcher WoW.xml
 D:\Projets\Public\Launcher WoW\Launcher WoW\obj\Debug\Launcher WoW.pdb
+D:\Projets\Public\Launcher WoW\Launcher WoW\obj\Debug\Launcher WoW.vbprojResolveAssemblyReference.cache
+D:\Projets\Public\Launcher WoW\Launcher WoW\obj\Debug\Launcher_WoW.createAccount.resources
