@@ -12,9 +12,10 @@ Public Class Main
         'Ouvre WoW.exe en fenêtré maximisé et focus
         'Le launcher est pour l'instant à mettre à la racine du dossier de jeu World of Warcraft !
         Shell("WoW.exe", AppWinStyle.MaximizedFocus)
-        End
+
+        End 'Ferme tous les processus du Launcher, et l'erreur à ne pas faire c'est de mettre un Me.Close -__- ..
     End Sub
-    Private Sub logTest()
+    Private Function logTest()
         Dim logonServer As New TcpClient()
         Try 'Rentrez l'ip de votre VPS à la place de IP Machine et si vous n'avez pas changer le port du royaume par défaut, laissez 8085
             logonServer.Connect("IP MACHINE", 8085)
@@ -31,9 +32,10 @@ Public Class Main
             lblStatut.BackColor = Color.DarkGreen
             logonServer.Close()
         End If
-    End Sub
+    End Function
 
     Private Sub Main_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Refresh() 'Ce Refresh est conseillé sinon tout le design ne chargera pas avant l'exécution de la fonction logTest()
         'Execution de la fonction logTest lorsque le logiciel est chargé
         logTest()
     End Sub
@@ -89,4 +91,12 @@ Public Class Main
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         createAccount.Show()
     End Sub
+
+    Private Sub timerPing_Tick(sender As Object, e As EventArgs) Handles timerPing.Tick
+        timerPing.Interval = 30000 'Chaque 30 secondes, le logiciel va retenté un ping pour actualiser le Statut du Serveur.
+        logTest()
+    End Sub
 End Class
+' WORLD OF WARCRAFT LAUNCHER BY SL4YZ ! LICENCE GPL2 (modification, distrubution autorisés, vente interdite!)
+' Pour me remercier veuillez simplement laisser une trace de mon nom sur le logiciel (ne pas supprimer les "By Sl4yZ" SVP)
+' Un problème ? Contactez-moi par Skype: RxZEditor

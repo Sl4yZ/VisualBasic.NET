@@ -22,6 +22,7 @@ Partial Class Main
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.btnPlay = New System.Windows.Forms.Button()
         Me.lblServerStatut = New System.Windows.Forms.Label()
         Me.lblStatut = New System.Windows.Forms.Label()
@@ -32,6 +33,7 @@ Partial Class Main
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.CopyRight = New System.Windows.Forms.Label()
+        Me.timerPing = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'btnPlay
@@ -120,6 +122,7 @@ Partial Class Main
         Me.WebBrowser1.Location = New System.Drawing.Point(3, 16)
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowser1.Name = "WebBrowser1"
+        Me.WebBrowser1.ScriptErrorsSuppressed = True
         Me.WebBrowser1.Size = New System.Drawing.Size(582, 269)
         Me.WebBrowser1.TabIndex = 8
         Me.WebBrowser1.Url = New System.Uri("http://google.fr", System.UriKind.Absolute)
@@ -135,6 +138,10 @@ Partial Class Main
         Me.CopyRight.TabIndex = 9
         Me.CopyRight.Text = "By Sl4yZ"
         Me.CopyRight.UseCompatibleTextRendering = True
+        '
+        'timerPing
+        '
+        Me.timerPing.Interval = 30000
         '
         'Main
         '
@@ -168,5 +175,6 @@ Partial Class Main
     Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
     Friend WithEvents WebBrowser1 As System.Windows.Forms.WebBrowser
     Friend WithEvents CopyRight As System.Windows.Forms.Label
+    Friend WithEvents timerPing As System.Windows.Forms.Timer
 
 End Class

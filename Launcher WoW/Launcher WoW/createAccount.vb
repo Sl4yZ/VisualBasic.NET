@@ -13,31 +13,39 @@ Public Class createAccount
     End Sub
 
     Private Function AccountFunction()
-        'Je vous conseille fortement de créer un utilisateur avec un mot de passe très compliqué et long MySQL dédié à cette opération avec uniquement les droits : INSERT & SELECT
-        'pour éviter les hacks .
-        Dim con As MySqlConnection = New MySqlConnection("Data Source=MYSQL HOST;Database=auth;User ID=ID MYSQL;Password=PASS MYSQL;")
-        Dim Query As String
-        If txtUserName.Text = Nothing Or txtEmail.Text = Nothing Or txtPass.Text = Nothing Or txtConfirmpass.Text = Nothing Then
-            'Si un des champ est vide, faire msgbox d'erreur
-            MsgBox("Erreur! Merci de compléter tous les champs!", MsgBoxStyle.Critical)
-        Else 'Sinon exécuter la commande sql
-            Query = "INSERT INTO account(username,sha_pass_hash, email, expansion)VALUES("
-            Query = Query + "'" + txtUserName.Text + "','" + "SELECT SHA1(CONCAT(UPPER(`" + txtUserName.Text + "`), ':', UPPER(&lt;" + txtConfirmpass.Text + "&gt;))); + "" ','" + txtEmail.Text + "',2"")"
-            Try
-                con.Open()
+        If txtPass.Text = txtConfirmpass.Text Then
+            'Je vous conseille fortement de créer un utilisateur avec un mot de passe très compliqué et long MySQL dédié à cette opération avec uniquement les droits : INSERT & SELECT
+            'pour éviter les hacks .
+            'Et pour plus de précaution, cryptez votre logiciel pour que nous n'ayons pas accès au source avec des logiciels tiers
+            Dim con As MySqlConnection = New MySqlConnection("Data Source=MYSQL HOST;Database=auth;User ID=ID MYSQL;Password=PASS MYSQL;")
+            Dim Query As String
+            If txtUserName.Text = Nothing Or txtEmail.Text = Nothing Or txtPass.Text = Nothing Or txtConfirmpass.Text = Nothing Then
+                'Si un des champ est vide, faire msgbox d'erreur
+                MsgBox("Erreur! Merci de compléter tous les champs!", MsgBoxStyle.Critical)
+            Else 'Sinon exécuter la commande sql
+                Query = "INSERT INTO account(username,sha_pass_hash, email, expansion)VALUES("
+                Query = Query + "'" + txtUserName.Text + "','" + "SELECT SHA1(CONCAT(UPPER(`" + txtUserName.Text + "`), ':', UPPER(&lt;" + txtConfirmpass.Text + "&gt;))); + "" ','" + txtEmail.Text + "',2"")"
+                Try
+                    con.Open()
 
-                Dim cmd As MySqlCommand = New MySqlCommand(Query, con)
+                    Dim cmd As MySqlCommand = New MySqlCommand(Query, con)
 
-                Dim i As Integer = cmd.ExecuteNonQuery()
-                If (i > 0) Then
-                    MsgBox("Le compte a été créée avec succès! Vous pouvez désormais jouer.", MsgBoxStyle.Information)
-                Else
-                    MsgBox("Erreur, merci de contacter l'Administrateur.", MsgBoxStyle.Critical)
-                End If
-                con.Close()
-            Catch ex As Exception
-                MsgBox(ex.Message & vbNewLine & "Merci de contacter l'Administrateur", MsgBoxStyle.Critical)
-            End Try
+                    Dim i As Integer = cmd.ExecuteNonQuery()
+                    If (i > 0) Then
+                        MsgBox("Le compte a été créée avec succès! Vous pouvez désormais jouer.", MsgBoxStyle.Information)
+                    Else
+                        MsgBox("Erreur, merci de contacter l'Administrateur.", MsgBoxStyle.Critical)
+                    End If
+                    con.Close()
+                Catch ex As Exception
+                    MsgBox(ex.Message & vbNewLine & "Merci de contacter l'Administrateur", MsgBoxStyle.Critical)
+                End Try
+            End If
+        Else
+            MsgBox("Erreur, les mots de passe ne correspondent pas!", MsgBoxStyle.Critical)
         End If
     End Function
 End Class
+' WORLD OF WARCRAFT LAUNCHER BY SL4YZ ! LICENCE GPL2 (modification, distrubution autorisés, vente interdite!)
+' Pour me remercier veuillez simplement laisser une trace de mon nom sur le logiciel (ne pas supprimer les "By Sl4yZ" SVP)
+' Un problème ? Contactez-moi par Skype: RxZEditor

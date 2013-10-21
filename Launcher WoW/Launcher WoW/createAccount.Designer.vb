@@ -98,6 +98,7 @@ Partial Class createAccount
         Me.txtPass.Name = "txtPass"
         Me.txtPass.Size = New System.Drawing.Size(100, 20)
         Me.txtPass.TabIndex = 7
+        Me.txtPass.UseSystemPasswordChar = True
         '
         'txtConfirmpass
         '
@@ -105,6 +106,7 @@ Partial Class createAccount
         Me.txtConfirmpass.Name = "txtConfirmpass"
         Me.txtConfirmpass.Size = New System.Drawing.Size(100, 20)
         Me.txtConfirmpass.TabIndex = 8
+        Me.txtConfirmpass.UseSystemPasswordChar = True
         '
         'createAccount
         '
