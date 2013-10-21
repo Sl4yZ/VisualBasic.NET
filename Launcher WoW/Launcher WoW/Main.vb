@@ -38,6 +38,7 @@ Public Class Main
         Refresh() 'Ce Refresh est conseillé sinon tout le design ne chargera pas avant l'exécution de la fonction logTest()
         'Execution de la fonction logTest lorsque le logiciel est chargé
         logTest()
+        Refresh()
     End Sub
            
     Private Sub defRealm_Click(sender As Object, e As EventArgs) Handles defRealm.Click

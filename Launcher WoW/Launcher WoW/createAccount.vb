@@ -16,8 +16,10 @@ Public Class createAccount
         If txtPass.Text = txtConfirmpass.Text Then
             'Je vous conseille fortement de créer un utilisateur avec un mot de passe très compliqué et long MySQL dédié à cette opération avec uniquement les droits : INSERT & SELECT
             'pour éviter les hacks .
-            'Et pour plus de précaution, cryptez votre logiciel pour que nous n'ayons pas accès au source avec des logiciels tiers
+            'Et pour plus de précaution, cryptez votre logiciel, obfusquez le (remplacez le nom de toutes les fonctions par des noms impossible à deviner comme logTest() devient q4sd@!8%zeq()
             Dim con As MySqlConnection = New MySqlConnection("Data Source=MYSQL HOST;Database=auth;User ID=ID MYSQL;Password=PASS MYSQL;")
+            ' Ceci est une méthode avec connexion SSL mais frenchement utiliser du SSL pour ça .. Après vous pouvez toujours l'utiliser vous ! 
+            ' -> Dim objMySQLConnection As MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection("Server=lol;Database=sqd;Uid=user;Pwd=password;Connect Timeout=360;Port=3306;Charset=cp1251;CertificateFile=\Program Files\mysql_wince_test\silmaril.pfx;CertificatePassword=pfxpass;SSL Mode=Required;")
             Dim Query As String
             If txtUserName.Text = Nothing Or txtEmail.Text = Nothing Or txtPass.Text = Nothing Or txtConfirmpass.Text = Nothing Then
                 'Si un des champ est vide, faire msgbox d'erreur
