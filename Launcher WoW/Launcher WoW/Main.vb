@@ -6,6 +6,8 @@
 'Voici un de mes ancien launcher, assez beau je trouve: http://nsa34.casimages.com/img/2013/08/29/130829033305985043.png 
 ' =========================================================================================================================
 Imports System.Net.Sockets
+Imports System
+Imports System.IO
 Public Class Main
 
     Private Sub btnPlay_Click(sender As Object, e As EventArgs) Handles btnPlay.Click
@@ -33,18 +35,54 @@ Public Class Main
             logonServer.Close()
         End If
     End Function
+    Private Function checkPatch()
+        Dim Request As System.Net.WebRequest
+        Dim Response As System.Net.WebResponse
+        Dim FileSize As Integer
+        Dim infoReader As System.IO.FileInfo
+        Dim url As String = "http://URL DE VOTRE PATCH MPQ"
+        Dim location As String = "Data\patch-X.mpq"
+        If IO.File.Exists(location) Then
+            Try
+                infoReader = My.Computer.FileSystem.GetFileInfo(location)
+                Request = Net.WebRequest.Create(url)
+                Request.Method = Net.WebRequestMethods.Http.Get
+                Response = Request.GetResponse
+                FileSize = Response.ContentLength
+            Catch ex As Exception
+                MsgBox(ex.Message, MsgBoxStyle.Critical)
+            End Try
+            If infoReader.Length = FileSize Then
+            Else
+                Try
+                    My.Computer.Network.DownloadFile(url, location)
+                Catch ex As Exception
+                    MsgBox(ex.Message, MsgBoxStyle.Critical)
+                End Try
+            End If
+        Else
+            Try
+                My.Computer.Network.DownloadFile(url, location)
+            Catch ex As Exception
+                MsgBox(ex.Message, MsgBoxStyle.Critical)
+            End Try
+        End If
+        
+    End Function
 
     Private Sub Main_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Refresh() 'Ce Refresh est conseillé sinon tout le design ne chargera pas avant l'exécution de la fonction logTest()
         'Execution de la fonction logTest lorsque le logiciel est chargé
+        checkPatch()
+        Refresh()
         logTest()
         Refresh()
     End Sub
-           
+
     Private Sub defRealm_Click(sender As Object, e As EventArgs) Handles defRealm.Click
         'Si le joueur a le client en Français (d'où le frFR)
         Try
-            Dim FILE_NAME As String = "\Data\frFR\realmlist.wtf"
+            Dim FILE_NAME As String = "Data\frFR\realmlist.wtf"
             'Condition si le fichier existe
             If System.IO.File.Exists(FILE_NAME) = True Then
                 Dim objWriter As New System.IO.StreamWriter(FILE_NAME)
@@ -59,7 +97,7 @@ Public Class Main
             End If
         Catch ex As Exception 'Si erreur, alors il test si le joueur a un client en Anglais (enUS)
             MsgBox("Vous ne devez pas avoir un client en Français. Test d'édition du realmlist pour un client en Anglais ...", MsgBoxStyle.Exclamation)
-            Dim FILE_NAME As String = "\Data\enUS\realmlist.wtf"
+            Dim FILE_NAME As String = "Data\enUS\realmlist.wtf"
             'Condition si le fichier existe
             If System.IO.File.Exists(FILE_NAME) = True Then
                 Dim objWriter As New System.IO.StreamWriter(FILE_NAME)
@@ -76,9 +114,14 @@ Public Class Main
     End Sub
 
     Private Sub vidCache_Click(sender As Object, e As EventArgs) Handles vidCache.Click
-        Dim dossierCache As String = "\Cache"
-        'Suppression de tout le dossier Cache
-        System.IO.Directory.Delete(dossierCache, True)
+        Dim dossierCache As String = "Cache"
+        If IO.Directory.Exists(dossierCache) Then 'Merci à Westtunger pour m'avoir fais pensé
+            MsgBox("Le cache a déjà été vidé!", MsgBoxStyle.Information)
+        Else
+            'Suppression de tout le dossier Cache
+            System.IO.Directory.Delete(dossierCache, True)
+        End If
+
     End Sub
 
     Private Sub btnForum_Click(sender As Object, e As EventArgs) Handles btnForum.Click
@@ -96,6 +139,10 @@ Public Class Main
     Private Sub timerPing_Tick(sender As Object, e As EventArgs) Handles timerPing.Tick
         timerPing.Interval = 30000 'Chaque 30 secondes, le logiciel va retenté un ping pour actualiser le Statut du Serveur.
         logTest()
+    End Sub
+
+    Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
 ' WORLD OF WARCRAFT LAUNCHER BY SL4YZ ! LICENCE GPL2 (modification, distrubution autorisés, vente interdite!)
